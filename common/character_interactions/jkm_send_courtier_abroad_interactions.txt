@@ -1,0 +1,76 @@
+jkm_send_courtier_interaction = {
+	category = interaction_category_friendly
+
+	desc = jkm_send_courtier_interaction_desc
+
+	populate_actor_list = {
+		# scope:actor is the calling player
+		scope:actor = {
+			# find all unmarried courtiers of the actor, and add them to the list
+			every_courtier = {
+				limit = {
+					is_married = no
+				}
+
+				add_to_list = characters
+			}
+		}
+	}
+
+	# only show the option when both are rulers
+	is_shown = {
+		NOT = { scope:actor = scope:recipient }
+
+		scope:recipient = {
+			is_ruler = yes
+		}
+
+		scope:actor = {
+			is_ruler = yes
+		}
+	}
+	
+	on_accept = {
+		scope:actor = {
+			# display a message to scope:actor containing the effects below
+			send_interface_message = {
+				type = event_generic_neutral
+				title = jkm_send_courtier_interaction_notification
+				right_icon = scope:secondary_actor
+				
+				# add the courtier to the recipient's court
+				scope:recipient = {
+					add_courtier = scope:secondary_actor
+				}
+
+				# # pay the courtier
+				# pay_short_term_gold = {
+				# 	gold = 15
+				# 	target = scope:secondary_actor
+				# }
+
+				# # pay the recipient
+				# pay_short_term_gold = {
+				# 	gold = 10
+				# 	target = scope:recipient
+				# }
+			}
+		}
+	}
+
+	# AI should accept automatically
+	auto_accept = {
+		custom_description = {
+			text = auto_accept_interaction_ai	
+			object = scope:recipient
+			scope:recipient = {
+				is_ai = yes
+			}
+		}
+	}
+	
+	ai_min_reply_days = 1
+	ai_max_reply_days = 1
+
+	greeting = positive
+}

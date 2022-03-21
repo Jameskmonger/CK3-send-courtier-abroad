@@ -42,18 +42,6 @@ jkm_send_courtier_interaction = {
 				scope:recipient = {
 					add_courtier = scope:secondary_actor
 				}
-
-				# # pay the courtier
-				# pay_short_term_gold = {
-				# 	gold = 15
-				# 	target = scope:secondary_actor
-				# }
-
-				# # pay the recipient
-				# pay_short_term_gold = {
-				# 	gold = 10
-				# 	target = scope:recipient
-				# }
 			}
 		}
 	}

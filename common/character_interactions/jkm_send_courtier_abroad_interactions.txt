@@ -8,10 +8,6 @@ jkm_send_courtier_interaction = {
 		scope:actor = {
 			# find all unmarried courtiers of the actor, and add them to the list
 			every_courtier = {
-				limit = {
-					is_married = no
-				}
-
 				add_to_list = characters
 			}
 		}
